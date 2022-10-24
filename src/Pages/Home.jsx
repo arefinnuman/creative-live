@@ -4,20 +4,31 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="hero min-h-screen">
-      <div className="hero-overlay bg-opacity-60"></div>
-      <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-          <p className="mb-5  text-xl ">
-            Are you a tourist, want some hotels. Exactly you are in perfect
-            place. We provide you a best hotel nears you and give the best
-            discount as much as possible.
+      <section className="">
+        <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
+          <h1 className="text-4xl font-bold leading-none sm:text-5xl">
+            Learn
+            <span className="text-primary"> without limits </span>
+          </h1>
+          <p className="px-8 mt-8 mb-12 text-lg">
+            Start, switch, or advance your career with more than 5,200 courses,
+            Professional Certificates, and degrees from world-class universities
+            and companies.
           </p>
-          <Link to="/view-courses">
-            <button className="btn btn-neutral">View Courses</button>
-          </Link>
+          <div className="flex flex-wrap justify-center">
+            <Link>
+              <button className="px-8 py-3 m-2 text-lg font-semibold rounded btn-primary">
+                Get started
+              </button>
+            </Link>
+            <Link>
+              <button className="px-8 py-3 m-2 text-lg border rounded btn">
+                Learn more
+              </button>
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
