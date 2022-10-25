@@ -9,9 +9,8 @@ const AllCourses = () => {
   console.log(user);
 
   return (
-    <div className="xl:container xl:mx-auto">
-      {/* <LeftSideBar /> */}
-      <div className="grid md:m-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:justify-center gap-5 ">
+    <div className="">
+      <div className="grid md:m-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:justify-center gap-5  ">
         {allCourses.map((course) => (
           <CourseCard key={course.id} course={course}></CourseCard>
         ))}

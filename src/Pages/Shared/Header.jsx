@@ -52,6 +52,10 @@ const Header = () => {
             </li>
 
             <li>
+              <Link to="/faq">FAQ</Link>
+            </li>
+
+            <li>
               <Link to="/about">About Us</Link>
             </li>
           </ul>
@@ -71,21 +75,36 @@ const Header = () => {
           </li>
 
           <li>
-            <Link to="about">About Us</Link>
+            <Link to="/faq">FAQ</Link>
+          </li>
+
+          <li>
+            <Link to="about">About me</Link>
           </li>
         </ul>
       </div>
 
       {user?.email ? (
         <>
-          <div className="navbar-end flex justify-between items-center"></div>
-          <input type="checkbox" className="toggle mx-2" />
+          <div className="navbar-end items-center"></div>
+          <input type="checkbox" className="toggle mx-5" />
           <Link to="/profile">
-            <CgProfile className="text-2xl mx-2" />
+            <div className="">
+              {user?.photoURL ? (
+                <img
+                  className="rounded"
+                  style={{ height: "30px" }}
+                  src={user?.photoURL}
+                  alt=""
+                />
+              ) : (
+                <CgProfile className="text-2xl" />
+              )}
+            </div>
           </Link>
 
           <Link>
-            <IoMdLogOut className="text-2xl mx-2" onClick={handleLogOut} />
+            <IoMdLogOut className="text-2xl mx-5" onClick={handleLogOut} />
           </Link>
         </>
       ) : (

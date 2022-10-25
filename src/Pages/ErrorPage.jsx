@@ -38,7 +38,7 @@ const ErrorPage = () => {
             Sorry, we couldn't find this page.
           </p>
           <Link
-            href="#"
+            to="/"
             className="px-8 py-3 font-semibold rounded bg-gray-900 hover:bg-gray-700 text-gray-100"
           >
             Back to homepage
