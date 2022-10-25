@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/UserContext";
 
@@ -31,7 +30,7 @@ const Register = () => {
     }
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePassword = (event) => {
     const password = event.target.value;
 
     const lengthError = password.length < 6;
@@ -87,17 +86,6 @@ const Register = () => {
     form.reset();
   };
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   return (
     <div className="hero min-h-screen bg-base-300">
       <div className="hero-content flex-col lg:flex-col-">
@@ -147,7 +135,7 @@ const Register = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                onChange={handlePasswordChange}
+                onChange={handlePassword}
                 type="password"
                 placeholder="password"
                 name="password"
@@ -163,23 +151,6 @@ const Register = () => {
                 </Link>
               </label>
             </div>
-
-            <section className="divide-y divide-neutral ">
-              <p className="text-center text-sm p-2">
-                Signup with Social Accounts
-              </p>
-              <div className="flex justify-around items-center pt-3">
-                <Link>
-                  <FaGithub />
-                </Link>
-                <Link onClick={handleGoogleSignIn}>
-                  <FaGoogle />
-                </Link>
-                <Link>
-                  <FaFacebook />
-                </Link>
-              </div>
-            </section>
 
             <div className="form-control mt-6">
               <button className="btn btn-primary">Register</button>
