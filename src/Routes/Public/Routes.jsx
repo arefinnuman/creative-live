@@ -3,6 +3,7 @@ import Root from "../../Layout/Root";
 import About from "../../Pages/About";
 import AllCourses from "../../Pages/AllCourses";
 import Blog from "../../Pages/Blog";
+import CourseDetails from "../../Pages/CourseDetails";
 import ErrorPage from "../../Pages/ErrorPage";
 import Home from "../../Pages/Home";
 import Login from "../../Pages/Login";
@@ -28,6 +29,12 @@ export const routes = createBrowserRouter([
         element: <AllCourses />,
         loader: () =>
           fetch("https://creative-live-server.vercel.app/view-course"),
+      },
+      {
+        path: "view-courses/course/:id",
+        element: <CourseDetails />,
+        loader: ({ params }) =>
+          fetch(`https://creative-live-server.vercel.app/course/${params.id}`),
       },
       {
         path: "/blog",
