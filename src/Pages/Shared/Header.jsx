@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
+import { CgProfile } from "react-icons/cg";
+import { IoMdLogOut } from "react-icons/io";
 import { Link } from "react-router-dom";
 import logo from "../../Asset/Logo.png";
+import { AuthContext } from "../../Contexts/UserContext";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Logged Out Successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -59,14 +75,31 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <Link to="/login" className="btn mr-3 ">
-          Login
-        </Link>
-        <Link to="/register" className="btn">
-          Register
-        </Link>
-      </div>
+
+      {user?.email ? (
+        <>
+          <div className="navbar-end flex justify-between items-center"></div>
+          <input type="checkbox" className="toggle mx-2" />
+          <Link to="/profile">
+            <CgProfile className="text-2xl mx-2" />
+          </Link>
+
+          <Link>
+            <IoMdLogOut className="text-2xl mx-2" onClick={handleLogOut} />
+          </Link>
+        </>
+      ) : (
+        <>
+          <div className="navbar-end">
+            <Link to="/login" className="btn  mr-2">
+              Login
+            </Link>
+            <Link to="/register" className="btn">
+              Register
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   );
 };

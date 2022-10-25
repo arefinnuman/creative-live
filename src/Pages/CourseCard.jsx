@@ -31,7 +31,9 @@ const CourseCard = ({ course }) => {
             <FaStar />
           </p>
 
-          <button className="btn btn-primary">Get Access</button>
+          <Link to="get-access">
+            <button className="btn btn-primary">Get Access</button>
+          </Link>
         </div>
       </div>
     </div>

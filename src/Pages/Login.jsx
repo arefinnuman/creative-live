@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Login = () => {
-  const { logIn, signInWithGoogle } = useContext(AuthContext);
+  const { logIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -87,6 +87,17 @@ const Login = () => {
       });
   };
 
+  const handleGithubSignIn = () => {
+    signInWithGithub()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="hero min-h-screen bg-base-300">
       <div className="hero-content flex-col lg:flex-col-">
@@ -138,7 +149,7 @@ const Login = () => {
                 Sign up with Social Accounts
               </p>
               <div className="flex justify-around items-center pt-3">
-                <Link>
+                <Link onClick={handleGithubSignIn}>
                   <FaGithub />
                 </Link>
                 <Link onClick={handleGoogleSignIn}>

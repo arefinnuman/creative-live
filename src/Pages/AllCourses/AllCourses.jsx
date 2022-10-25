@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Contexts/UserContext";
 import CourseCard from "../CourseCard";
 
 const AllCourses = () => {
   const allCourses = useLoaderData();
+  const { user } = useContext(AuthContext);
+  console.log(user);
 
   return (
     <div className="xl:container xl:mx-auto">

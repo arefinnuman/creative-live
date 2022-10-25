@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Register = () => {
   // Get the context
-  const { createUser, updateName, verifyEmail, signInWithGoogle } =
+  const { createUser, updateName, verifyEmail, updatePhotoURL } =
     useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -62,28 +65,29 @@ const Register = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
+    const photoURL = form.photoURL.value;
 
     createUser(userInfo.email, userInfo.password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        form.reset();
+        updateName(name).then(() => {
+          toast.success("Name updated successfully");
+        });
 
-        updateName(name)
-          .then(() => {
-            toast.success("Name updated successfully");
+        updatePhotoURL(photoURL).then(() => {
+          toast.success("Photo URL updated successfully");
+        });
 
-            verifyEmail().then(() => {
-              toast.success("Verification email sent");
-            });
-          })
-          .catch((error) => {
-            toast.error(error.message);
-          });
+        verifyEmail().then(() => {
+          toast.success("Verification email sent");
+          navigate(from, { replace: true });
+        });
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error.message);
       });
-    form.reset();
   };
 
   return (
@@ -111,6 +115,17 @@ const Register = () => {
                 name="name"
                 className="input input-bordered"
                 required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo URL</span>
+              </label>
+              <input
+                type="text"
+                placeholder="photo URL"
+                name="photoURL"
+                className="input input-bordered"
               />
             </div>
             <div className="form-control">

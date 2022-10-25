@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
   sendEmailVerification,
@@ -65,6 +66,19 @@ const UserContext = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
 
+  // 8. Sign in With Github
+  const signInWithGithub = () => {
+    setLoader(true);
+    const githubProvider = new GithubAuthProvider();
+    return signInWithPopup(auth, githubProvider);
+  };
+
+  //  Update User Photo URL
+  const updatePhotoURL = (photoURL) => {
+    setLoader(true);
+    return updateProfile(auth.currentUser, { photoURL });
+  };
+
   const authInfo = {
     user,
     loader,
@@ -75,6 +89,8 @@ const UserContext = ({ children }) => {
     logOut,
     createUser,
     signInWithGoogle,
+    signInWithGithub,
+    updatePhotoURL,
   };
 
   //   Auth State Change
