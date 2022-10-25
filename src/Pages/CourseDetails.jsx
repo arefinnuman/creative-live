@@ -1,9 +1,32 @@
 import React from "react";
+import { FaStar } from "react-icons/fa";
+import { useLoaderData } from "react-router-dom";
 
 const CourseDetails = () => {
+  const course = useLoaderData();
+  const { name, about, fee, img, rating, duration } = course;
   return (
-    <div>
-      <h1>Course Details</h1>
+    <div className="xl:container xl:mx-auto">
+      <div className="card bg-base-100 shadow-2xl">
+        <figure>
+          <img src={img} alt="" />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">{name}</h2>
+          <p>{about}</p>
+
+          <p className="font-semibold text-neutral">{duration}</p>
+          <div className="flex font-bold  items-center">
+            <p> {fee} TK</p>
+            <p className="flex items-center ps-2 ">
+              {rating}
+              <FaStar />
+            </p>
+
+            <button className="btn btn-primary">Get Access</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
