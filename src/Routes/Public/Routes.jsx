@@ -26,6 +26,8 @@ export const routes = createBrowserRouter([
       {
         path: "/view-courses",
         element: <AllCourses />,
+        loader: () =>
+          fetch("https://creative-live-server.vercel.app/view-course"),
       },
       {
         path: "/blog",
