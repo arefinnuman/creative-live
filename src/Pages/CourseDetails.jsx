@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetails = () => {
   const course = useLoaderData();
@@ -23,7 +23,9 @@ const CourseDetails = () => {
               <FaStar />
             </p>
 
-            <button className="btn btn-primary">Get Access</button>
+            <Link to="/get-access">
+              <button className="btn btn-primary">Get Premium Access</button>
+            </Link>
           </div>
         </div>
       </div>

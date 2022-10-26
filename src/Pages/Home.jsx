@@ -1,10 +1,16 @@
+// import Lottie from "lottie-web";
+import Lottie from "lottie-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import LottieAnimation from "../Asset/LottieAnimation.json";
 
 const Home = () => {
   return (
     <div className="hero min-h-screen">
       <section className="">
+        <div>
+          <Lottie animationData={LottieAnimation} />
+        </div>
         <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
           <h1 className="text-4xl font-bold leading-none sm:text-5xl">
             Learn

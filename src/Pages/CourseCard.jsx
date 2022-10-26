@@ -31,8 +31,8 @@ const CourseCard = ({ course }) => {
             <FaStar />
           </p>
 
-          <Link to="get-access">
-            <button className="btn btn-primary">Get Access</button>
+          <Link to="/get-access">
+            <button className="btn btn-primary">Get Premium Access</button>
           </Link>
         </div>
       </div>

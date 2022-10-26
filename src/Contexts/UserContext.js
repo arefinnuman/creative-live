@@ -31,9 +31,8 @@ const UserContext = ({ children }) => {
   };
 
   // 2. Update Name
-  const updateName = (name) => {
-    setLoader(true);
-    return updateProfile(auth.currentUser, { displayName: name });
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
   };
 
   // 3. Verify Email
@@ -73,24 +72,17 @@ const UserContext = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
 
-  //  Update User Photo URL
-  const updatePhotoURL = (photoURL) => {
-    setLoader(true);
-    return updateProfile(auth.currentUser, { photoURL });
-  };
-
   const authInfo = {
     user,
     loader,
     logIn,
-    updateName,
+    updateUserProfile,
     verifyEmail,
     resetPassword,
     logOut,
     createUser,
     signInWithGoogle,
     signInWithGithub,
-    updatePhotoURL,
   };
 
   //   Auth State Change

@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
-import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Login = () => {
-  const { logIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+  const { logIn } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -71,31 +70,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
       })
-      .error((error) => {
-        console.error(error);
-      });
-  };
-
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  const handleGithubSignIn = () => {
-    signInWithGithub()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch((error) => toast.error(error.message));
   };
 
   return (
@@ -126,6 +101,9 @@ const Login = () => {
                 required
               />
             </div>
+            {errors.emailError && (
+              <p className="text-error">{errors.emailError}</p>
+            )}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
@@ -138,29 +116,23 @@ const Login = () => {
                 className="input input-bordered"
                 required
               />
+              {errors.passwordError && (
+                <p className="text-error">{errors.passwordError}</p>
+              )}
               <label className="label">
                 <Link href="#" className="label-text-alt link link-hover">
                   Forgot password?
                 </Link>
               </label>
-            </div>
-            <section className="divide-y divide-neutral ">
-              <p className="text-center text-sm p-2">
-                Sign up with Social Accounts
-              </p>
-              <div className="flex justify-around items-center pt-3">
-                <Link onClick={handleGithubSignIn}>
-                  <FaGithub />
-                </Link>
-                <Link onClick={handleGoogleSignIn}>
-                  <FaGoogle />
-                </Link>
-                <Link>
-                  <FaFacebook />
+              <div className="text-center">
+                New to this site?{" "}
+                <Link className="text-info" to="/register">
+                  Sign Up
                 </Link>
               </div>
-            </section>
-            <div className="form-control mt-6">
+            </div>
+
+            <div className="form-control mt-3">
               <button className="btn btn-primary">Login</button>
             </div>
           </div>

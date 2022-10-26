@@ -36,21 +36,13 @@ export const routes = createBrowserRouter([
         children: [
           {
             path: "/view-courses",
-            element: (
-              <PrivateRoute>
-                <AllCourses />
-              </PrivateRoute>
-            ),
+            element: <AllCourses />,
             loader: () =>
               fetch("https://creative-live-server.vercel.app/view-course"),
           },
           {
             path: "/view-courses/course/:id",
-            element: (
-              <PrivateRoute>
-                <CourseDetails />
-              </PrivateRoute>
-            ),
+            element: <CourseDetails />,
             loader: ({ params }) =>
               fetch(
                 `https://creative-live-server.vercel.app/course/${params.id}`
@@ -91,6 +83,14 @@ export const routes = createBrowserRouter([
 
       {
         path: "view-courses/get-access",
+        element: (
+          <PrivateRoute>
+            <GetAccess />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/get-access",
         element: (
           <PrivateRoute>
             <GetAccess />

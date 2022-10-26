@@ -1,21 +1,27 @@
 import React, { useContext, useState } from "react";
-import toast from "react-hot-toast";
+import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Register = () => {
-  // Get the context
-  const { createUser, updateName, verifyEmail, updatePhotoURL } =
-    useContext(AuthContext);
+  const {
+    createUser,
+    verifyEmail,
+    updateUserProfile,
+    signInWithGoogle,
+    signInWithGithub,
+  } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+  const [error, setError] = useState("");
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
   });
-
   const [errors, setErrors] = useState({
     emailError: "",
     passwordError: "",
@@ -69,24 +75,58 @@ const Register = () => {
 
     createUser(userInfo.email, userInfo.password)
       .then((result) => {
+        console.log(result.user);
+        setError("");
+        form.reset();
+        navigate("/login");
+        handleUpdateUserProfile(name, photoURL);
+        handleEmailVerification();
+        Swal.fire("The Internet?", "That thing is still around?", "question");
+      })
+      .catch((e) => {
+        console.error(e);
+        setError(e.message);
+      });
+  };
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleEmailVerification = () => {
+    verifyEmail()
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
         const user = result.user;
         console.log(user);
-        form.reset();
-        updateName(name).then(() => {
-          toast.success("Name updated successfully");
-        });
-
-        updatePhotoURL(photoURL).then(() => {
-          toast.success("Photo URL updated successfully");
-        });
-
-        verifyEmail().then(() => {
-          toast.success("Verification email sent");
-          navigate(from, { replace: true });
-        });
       })
       .catch((error) => {
-        toast.error(error.message);
+        console.error(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    signInWithGithub()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
@@ -111,7 +151,7 @@ const Register = () => {
               </label>
               <input
                 type="text"
-                placeholder="name"
+                placeholder="Full name"
                 name="name"
                 className="input input-bordered"
                 required
@@ -161,11 +201,32 @@ const Register = () => {
                 <p className="text-error">{errors.passwordError}</p>
               )}
               <label className="label">
-                <Link href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </Link>
+                <p>
+                  Have an Account ?{" "}
+                  <Link className="text-info" to="/login">
+                    Login
+                  </Link>{" "}
+                  now
+                </p>
               </label>
             </div>
+            <section className="divide-y divide-neutral ">
+              <p className="text-center text-sm p-2">
+                Sign up with Social Accounts
+              </p>
+              <div className="flex justify-around items-center pt-3">
+                <Link onClick={handleGithubSignIn}>
+                  <FaGithub />
+                </Link>
+                <Link onClick={handleGoogleSignIn}>
+                  <FaGoogle />
+                </Link>
+                <Link>
+                  <FaFacebook />
+                </Link>
+              </div>
+            </section>
+            {error && <p className="text-error">{error}</p>}
 
             <div className="form-control mt-6">
               <button className="btn btn-primary">Register</button>

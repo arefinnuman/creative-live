@@ -12,7 +12,7 @@ const LeftSideBar = () => {
 
   return (
     <div>
-      <div className="text-info p-5">
+      <div className="text-info">
         {courses.map((course) => (
           <p key={course.id}>
             <Link to={`/view-courses/course/${course.id}`}>
