@@ -75,6 +75,7 @@ const UserContext = ({ children }) => {
   const authInfo = {
     user,
     loader,
+    setLoader,
     logIn,
     updateUserProfile,
     verifyEmail,

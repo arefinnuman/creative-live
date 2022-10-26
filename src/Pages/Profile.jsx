@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import avatarImg from "../Asset/avatar.jpeg";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Profile = () => {
@@ -8,7 +7,7 @@ const Profile = () => {
     <div className="flex justify-center items-center min-h-screen">
       <div className="flex flex-col max-w-md p-6 ">
         <img
-          src={user?.photoURL ? user.photoURL : avatarImg}
+          src={user?.photoURL ? user.photoURL : <p>view profile</p>}
           alt="Profile"
           className="flex-shrink-0 object-cover h-64 rounded-sm sm:h-96 dark:bg-gray-500 aspect-square"
         />

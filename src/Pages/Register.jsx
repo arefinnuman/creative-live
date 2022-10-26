@@ -78,7 +78,7 @@ const Register = () => {
         console.log(result.user);
         setError("");
         form.reset();
-        navigate("/login");
+        navigate(from, { replace: true });
         handleUpdateUserProfile(name, photoURL);
         handleEmailVerification();
         Swal.fire("The Internet?", "That thing is still around?", "question");
@@ -134,10 +134,10 @@ const Register = () => {
     <div className="hero min-h-screen bg-base-300">
       <div className="hero-content flex-col lg:flex-col-">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Register now!</h1>
-          <p className="py-6">
-            If you don't have any account then please signup first to become a
-            member. And Book your Ticket.
+          <h1 className="text-5xl font-bold text-center">Register now!</h1>
+          <p className="py-6 text-center">
+            Join Creative live for free. Create a profile to get a personalized
+            learning experience with course recommendations.
           </p>
         </div>
         <form

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Login = () => {
-  const { logIn } = useContext(AuthContext);
+  const { logIn, setLoader } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,17 +70,17 @@ const Login = () => {
         const user = result.user;
         console.log(user);
       })
-      .catch((error) => toast.error(error.message));
+      .catch((error) => toast.error(error.message))
+      .finally(() => setLoader(false));
   };
 
   return (
     <div className="hero min-h-screen bg-base-300">
       <div className="hero-content flex-col lg:flex-col-">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-5xl font-bold text-center">Welcome Back</h1>
           <p className="py-6">
-            If you don't have any account then please signup first to become a
-            member. And Book your Ticket.
+            Login here. You will be taken to the interface.
           </p>
         </div>
         <form

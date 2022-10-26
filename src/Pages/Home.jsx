@@ -22,14 +22,14 @@ const Home = () => {
             and companies.
           </p>
           <div className="flex flex-wrap justify-center">
-            <Link>
+            <Link to="/view-courses">
               <button className="px-8 py-3 m-2 text-lg font-semibold rounded btn-primary">
                 Get started
               </button>
             </Link>
-            <Link>
+            <Link to="/blog">
               <button className="px-8 py-3 m-2 text-lg border rounded btn">
-                Learn more
+                Read Our Blogs
               </button>
             </Link>
           </div>

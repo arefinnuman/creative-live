@@ -88,6 +88,11 @@ const Header = () => {
         <>
           <div className="navbar-end items-center"></div>
           <input type="checkbox" className="toggle mx-5" />
+
+          <div>
+            {user?.displayName ? <>{user.displayName}</> : <p>view profile</p>}
+          </div>
+
           <Link to="/profile">
             <div className="">
               {user?.photoURL ? (
