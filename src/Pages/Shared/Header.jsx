@@ -81,23 +81,22 @@ const Header = () => {
           <li>
             <Link to="about">About me</Link>
           </li>
+
+          <li>
+            <input type="checkbox" className="toggle mt-3" />
+          </li>
         </ul>
       </div>
 
       {user?.email ? (
         <>
-          <div className="navbar-end items-center"></div>
-          <input type="checkbox" className="toggle mx-5" />
-
-          <div>
-            {user?.displayName ? <>{user.displayName}</> : <p>view profile</p>}
-          </div>
+          <div className="navbar-end "></div>
 
           <Link to="/profile">
-            <div className="">
+            <div className="mr-5 flex justify-around items-center">
               {user?.photoURL ? (
                 <img
-                  className="rounded"
+                  className="rounded-full mr-2"
                   style={{ height: "30px" }}
                   src={user?.photoURL}
                   alt=""
@@ -105,12 +104,18 @@ const Header = () => {
               ) : (
                 <CgProfile className="text-2xl" />
               )}
+              {user?.displayName ? (
+                <>{user.displayName}</>
+              ) : (
+                <p>view profile</p>
+              )}
             </div>
           </Link>
-
-          <Link>
-            <IoMdLogOut className="text-2xl mx-5" onClick={handleLogOut} />
-          </Link>
+          <div className="">
+            <Link>
+              <IoMdLogOut className="text-2xl mr-2" onClick={handleLogOut} />
+            </Link>
+          </div>
         </>
       ) : (
         <>

@@ -12,9 +12,9 @@ const CourseCard = ({ course }) => {
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         <p>
-          {about.length > 250 ? (
+          {about.length > 150 ? (
             <p>
-              {about.slice(0, 250) + "..."}{" "}
+              {about.slice(0, 150) + "..."}{" "}
               <Link to={`course/${id}`} className="text-info">
                 Read More
               </Link>{" "}
@@ -26,11 +26,10 @@ const CourseCard = ({ course }) => {
         <p className="font-semibold text-neutral">{duration}</p>
         <div className="flex font-bold  items-center">
           <p> {fee} TK</p>
-          <p className="flex items-center ps-2 ">
+          <p className="flex items-center ">
             {rating}
             <FaStar />
           </p>
-
           <Link to="/get-access">
             <button className="btn btn-primary">Get Premium Access</button>
           </Link>

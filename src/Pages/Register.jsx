@@ -81,11 +81,15 @@ const Register = () => {
         navigate(from, { replace: true });
         handleUpdateUserProfile(name, photoURL);
         handleEmailVerification();
-        Swal.fire("The Internet?", "That thing is still around?", "question");
+        Swal.fire(
+          "Account Created Successfully",
+          "verify your account",
+          "info"
+        );
       })
-      .catch((e) => {
-        console.error(e);
-        setError(e.message);
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
       });
   };
   const handleUpdateUserProfile = (name, photoURL) => {
