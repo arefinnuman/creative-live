@@ -95,16 +95,19 @@ const Header = () => {
 
           <Link to="/profile">
             <div className="mr-5 flex justify-around items-center">
-              {user?.photoURL ? (
-                <img
-                  className="rounded-full mr-2"
-                  style={{ height: "30px" }}
-                  src={user?.photoURL}
-                  alt=""
-                />
-              ) : (
-                <CgProfile className="text-2xl" />
-              )}
+              <p className="flex mr-3">
+                Profile
+                {user?.photoURL ? (
+                  <img
+                    className="rounded-full mx-2"
+                    style={{ height: "30px" }}
+                    src={user?.photoURL}
+                    alt=""
+                  />
+                ) : (
+                  <CgProfile className="text-2xl" />
+                )}
+              </p>
             </div>
           </Link>
           <div className="">

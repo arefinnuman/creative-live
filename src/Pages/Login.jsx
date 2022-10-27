@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
+import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Login = () => {
-  const { logIn, setLoade, resetPassword } = useContext(AuthContext);
+  const { logIn, signInWithGoogle, signInWithGithub, resetPassword } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -82,6 +84,28 @@ const Login = () => {
       .catch((error) => toast.error(error.message));
   };
 
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    signInWithGithub()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="hero min-h-screen bg-base-300">
       <div className="hero-content flex-col lg:flex-col-">
@@ -142,6 +166,23 @@ const Login = () => {
                 </Link>
               </div>
             </div>
+
+            <section className="divide-y divide-neutral ">
+              <p className="text-center text-sm p-2">
+                Sign up with Social Accounts
+              </p>
+              <div className="flex justify-around items-center pt-3">
+                <Link onClick={handleGithubSignIn}>
+                  <FaGithub />
+                </Link>
+                <Link onClick={handleGoogleSignIn}>
+                  <FaGoogle />
+                </Link>
+                <Link>
+                  <FaFacebook />
+                </Link>
+              </div>
+            </section>
 
             <div className="form-control mt-3">
               <button className="btn btn-primary">Login</button>

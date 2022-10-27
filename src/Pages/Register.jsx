@@ -94,6 +94,7 @@ const Register = () => {
       })
       .finally(() => setLoader(false));
   };
+  
   const handleUpdateUserProfile = (name, photoURL) => {
     const profile = {
       displayName: name,
