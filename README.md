@@ -18,4 +18,4 @@
 
 ## people can login through firebase
 
-# b610-learning-platform-client-side-arefinnuman
+# b610-learning-platform-client-side-arefinnumano

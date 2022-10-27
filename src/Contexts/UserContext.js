@@ -96,6 +96,7 @@ const UserContext = ({ children }) => {
     createUser,
     signInWithGoogle,
     signInWithGithub,
+    resetPassword,
   };
 
   return (

@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Login = () => {
-  const { logIn, setLoader } = useContext(AuthContext);
+  const { logIn, setLoade, resetPassword } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,8 +71,15 @@ const Login = () => {
         const user = result.user;
         console.log(user);
       })
-      .catch((error) => toast.error(error.message))
-      .finally(() => setLoader(false));
+      .catch((error) => toast.error(error.message));
+  };
+
+  const handleReset = () => {
+    resetPassword(userInfo.email)
+      .then(() => {
+        Swal.fire("Reset link has been sent, please check email");
+      })
+      .catch((error) => toast.error(error.message));
   };
 
   return (
@@ -120,7 +128,10 @@ const Login = () => {
                 <p className="text-error">{errors.passwordError}</p>
               )}
               <label className="label">
-                <Link href="#" className="label-text-alt link link-hover">
+                <Link
+                  onClick={handleReset}
+                  className="label-text-alt link link-hover"
+                >
                   Forgot password?
                 </Link>
               </label>
