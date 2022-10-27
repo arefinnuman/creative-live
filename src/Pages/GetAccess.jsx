@@ -1,27 +1,41 @@
 import Lottie from "lottie-react";
 import React, { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
+import Pdf from "react-to-pdf";
 import DownloadAnimation from "../Asset/DownloadAnimation.json";
 import { AuthContext } from "../Contexts/UserContext";
 
 const GetAccess = () => {
   const { user } = useContext(AuthContext);
-  const onButtonClick = () => {
-    fetch("Tutorial.pdf").then((response) => {
-      response.blob().then((blob) => {
-        const fileURL = window.URL.createObjectURL(blob);
 
-        let aLInk = document.createElement("a");
-        aLInk.href = fileURL;
-        aLInk.download = "Tutorial.pdf";
-        aLInk.click();
-      });
-    });
-  };
+  const course = useLoaderData();
+  const { name, about, fee, img, rating, duration } = course;
+  console.log("course", course);
+  console.log(name);
+
+  const ref = React.createRef();
 
   return (
     <div className="flex justify-center items-center min-h-screen text-center ">
-      <div>
-        <Lottie animationData={DownloadAnimation} />
+      <div className="">
+        <div className="flex items-center justify-center">
+          <Lottie
+            className="w-64 h-64 text-center"
+            animationData={DownloadAnimation}
+          />
+        </div>
+        <div>
+          <Pdf targetRef={ref} filename="code-example.pdf">
+            {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+          </Pdf>
+          <div ref={ref}>
+            <h1>{name}</h1>
+            <p>{about}</p>
+            <p>Fee:{fee}</p>
+            <p>Rating {rating}</p>
+          </div>
+        </div>
+
         {user && user.emailVerified ? (
           <>
             <p>You are Verified. Thank you so much</p>
@@ -34,12 +48,6 @@ const GetAccess = () => {
             </p>
           </>
         )}
-        <div className="m-2">
-          <h3>Click on below Button to download pdf file</h3>
-          <button onClick={onButtonClick} className="btn btn-primary m-2">
-            Download
-          </button>
-        </div>
       </div>
     </div>
   );

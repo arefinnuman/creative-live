@@ -30,7 +30,7 @@ const CourseCard = ({ course }) => {
             {rating}
             <FaStar />
           </p>
-          <Link to="/get-access">
+          <Link to={`/get-access/${id}`}>
             <button className="btn btn-primary">Get Premium Access</button>
           </Link>
         </div>

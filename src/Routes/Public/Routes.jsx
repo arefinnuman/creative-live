@@ -88,14 +88,22 @@ export const routes = createBrowserRouter([
             <GetAccess />
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(
+            `https://creative-live-server-eitgr0eca-arefinnuman.vercel.app/get-access/${params.id}`
+          ),
       },
       {
-        path: "/get-access",
+        path: "/get-access/:id",
         element: (
           <PrivateRoute>
             <GetAccess />
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(
+            `https://creative-live-server-eitgr0eca-arefinnuman.vercel.app/get-access/${params.id}`
+          ),
       },
     ],
   },
