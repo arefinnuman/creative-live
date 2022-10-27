@@ -32,6 +32,7 @@ const UserContext = ({ children }) => {
 
   // 2. Update Name
   const updateUserProfile = (profile) => {
+    setLoader(true);
     return updateProfile(auth.currentUser, profile);
   };
 
@@ -72,6 +73,17 @@ const UserContext = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
 
+  //   Auth State Change
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoader(false);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   const authInfo = {
     user,
     loader,
@@ -85,17 +97,6 @@ const UserContext = ({ children }) => {
     signInWithGoogle,
     signInWithGithub,
   };
-
-  //   Auth State Change
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoader(false);
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
   return (
     <div>

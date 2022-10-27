@@ -1,4 +1,6 @@
+import Lottie from "lottie-react";
 import React, { useContext } from "react";
+import DownloadAnimation from "../Asset/DownloadAnimation.json";
 import { AuthContext } from "../Contexts/UserContext";
 
 const GetAccess = () => {
@@ -19,6 +21,7 @@ const GetAccess = () => {
   return (
     <div className="flex justify-center items-center min-h-screen text-center ">
       <div>
+        <Lottie animationData={DownloadAnimation} />
         {user && user.emailVerified ? (
           <>
             <p>You are Verified. Thank you so much</p>

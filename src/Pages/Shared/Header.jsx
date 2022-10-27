@@ -63,6 +63,7 @@ const Header = () => {
         <Link to="/" className="btn btn-ghost normal-case text-2xl">
           <img src={logo} alt="logo" className="h-10" />{" "}
         </Link>
+        {user?.displayName ? <p>Hello, {user.displayName}</p> : <></>}
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
@@ -103,11 +104,6 @@ const Header = () => {
                 />
               ) : (
                 <CgProfile className="text-2xl" />
-              )}
-              {user?.displayName ? (
-                <>{user.displayName}</>
-              ) : (
-                <p>view profile</p>
               )}
             </div>
           </Link>

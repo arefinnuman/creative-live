@@ -1,4 +1,3 @@
-// import Lottie from "lottie-web";
 import Lottie from "lottie-react";
 import React from "react";
 import { Link } from "react-router-dom";

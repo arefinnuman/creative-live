@@ -11,6 +11,7 @@ const Register = () => {
     updateUserProfile,
     signInWithGoogle,
     signInWithGithub,
+    setLoader,
   } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -82,15 +83,16 @@ const Register = () => {
         handleUpdateUserProfile(name, photoURL);
         handleEmailVerification();
         Swal.fire(
-          "Account Created Successfully",
-          "verify your account",
-          "info"
+          "Account Created Successfully!",
+          "PLease Check your Email for Verification",
+          "success"
         );
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
-      });
+      })
+      .finally(() => setLoader(false));
   };
   const handleUpdateUserProfile = (name, photoURL) => {
     const profile = {
