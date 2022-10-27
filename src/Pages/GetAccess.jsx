@@ -26,7 +26,11 @@ const GetAccess = () => {
         </div>
         <div>
           <Pdf targetRef={ref} filename="code-example.pdf">
-            {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+            {({ toPdf }) => (
+              <button className="btn btn-success" onClick={toPdf}>
+                Generate Pdf
+              </button>
+            )}
           </Pdf>
           <div ref={ref}>
             <h1>{name}</h1>
