@@ -12,12 +12,13 @@ const LeftSideBar = () => {
 
   return (
     <div>
-      <div className="text-info">
+      <div className="flex flex-col my-5">
         {courses.map((course) => (
-          <p key={course.id}>
-            <Link to={`/view-courses/course/${course.id}`}>
-              <button className="btn  m-2 w-48 h-20">{course.name}</button>
-            </Link>
+          <p
+            className="text-neutral hover:text-primary hover:underline text-center mt-3  "
+            key={course.id}
+          >
+            <Link to={`/view-courses/course/${course.id}`}>{course.name}</Link>
           </p>
         ))}
       </div>
